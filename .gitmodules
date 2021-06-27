@@ -1,0 +1,10 @@
+[submodule "PCB/KiCad_JGUI"]
+	path = PCB/KiCad_JGUI
+	url = https://github.com/jgui/KiCad_JGUI.git
+[submodule "SW_MS7/avr-liberty"]
+	path = SW_MS7/avr-liberty
+	url = https://github.com/jgui/avr-liberty.git
+	branch = master
+[submodule "SW_MS7/avr-can-lib"]
+	path = SW_MS7/avr-can-lib
+	url = https://github.com/jgui/avr-can-lib.git
