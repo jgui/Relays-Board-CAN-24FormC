@@ -4,9 +4,9 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 4
-Title ""
-Date ""
-Rev ""
+Title "Relay board controlled by CAN."
+Date "2021-06-28"
+Rev "1.0"
 Comp ""
 Comment1 ""
 Comment2 ""
@@ -17,8 +17,8 @@ $Comp
 L MCU_Microchip_ATmega:ATmega88A-PU U3
 U 1 1 60A92CA5
 P 5250 2550
-F 0 "U3" H 5550 4150 50  0000 R CNN
-F 1 "ATmega88A-PU" H 6050 4050 50  0000 R CNN
+F 0 "U3" H 5500 4150 50  0000 R CNN
+F 1 "ATmega88A-PU" H 6000 4050 50  0000 R CNN
 F 2 "Package_DIP:DIP-28_W7.62mm" H 5250 2550 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A_88A_168A-Data-Sheet-40002007A.pdf" H 5250 2550 50  0001 C CNN
 	1    5250 2550
@@ -182,40 +182,40 @@ $EndSheet
 $Comp
 L power:GND #PWR015
 U 1 1 60B9CEFD
-P 3700 2800
-F 0 "#PWR015" H 3700 2550 50  0001 C CNN
-F 1 "GND" V 3705 2672 50  0000 R CNN
-F 2 "" H 3700 2800 50  0001 C CNN
-F 3 "" H 3700 2800 50  0001 C CNN
-	1    3700 2800
+P 3550 2800
+F 0 "#PWR015" H 3550 2550 50  0001 C CNN
+F 1 "GND" V 3555 2672 50  0000 R CNN
+F 2 "" H 3550 2800 50  0001 C CNN
+F 3 "" H 3550 2800 50  0001 C CNN
+	1    3550 2800
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR014
 U 1 1 60B9EFA6
-P 3700 850
-F 0 "#PWR014" H 3700 700 50  0001 C CNN
-F 1 "+5V" V 3715 978 50  0000 L CNN
-F 2 "" H 3700 850 50  0001 C CNN
-F 3 "" H 3700 850 50  0001 C CNN
-	1    3700 850 
+P 3550 850
+F 0 "#PWR014" H 3550 700 50  0001 C CNN
+F 1 "+5V" V 3565 978 50  0000 L CNN
+F 2 "" H 3550 850 50  0001 C CNN
+F 3 "" H 3550 850 50  0001 C CNN
+	1    3550 850 
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR08
 U 1 1 60B9FD5A
-P 2850 2450
-F 0 "#PWR08" H 2850 2300 50  0001 C CNN
-F 1 "+5V" V 2865 2578 50  0000 L CNN
-F 2 "" H 2850 2450 50  0001 C CNN
-F 3 "" H 2850 2450 50  0001 C CNN
-	1    2850 2450
+P 2950 2450
+F 0 "#PWR08" H 2950 2300 50  0001 C CNN
+F 1 "+5V" V 2965 2578 50  0000 L CNN
+F 2 "" H 2950 2450 50  0001 C CNN
+F 3 "" H 2950 2450 50  0001 C CNN
+	1    2950 2450
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	3700 2650 3700 2800
+	3550 2650 3550 2800
 Wire Wire Line
-	3700 850  3700 1050
+	3550 850  3550 1050
 $Comp
 L Interface_CAN_LIN:MCP2562-E-P U1
 U 1 1 60BA1EAC
@@ -235,8 +235,6 @@ Wire Wire Line
 	800  1600 1450 1600
 Wire Wire Line
 	1600 1600 1600 1650
-Wire Wire Line
-	2600 1350 3100 1350
 $Comp
 L power:+5V #PWR03
 U 1 1 60BAD0B4
@@ -266,16 +264,14 @@ Wire Wire Line
 $Comp
 L power:+5V #PWR07
 U 1 1 60BAE284
-P 2700 1650
-F 0 "#PWR07" H 2700 1500 50  0001 C CNN
-F 1 "+5V" V 2715 1778 50  0000 L CNN
-F 2 "" H 2700 1650 50  0001 C CNN
-F 3 "" H 2700 1650 50  0001 C CNN
-	1    2700 1650
+P 2600 1650
+F 0 "#PWR07" H 2600 1500 50  0001 C CNN
+F 1 "+5V" V 2615 1778 50  0000 L CNN
+F 2 "" H 2600 1650 50  0001 C CNN
+F 3 "" H 2600 1650 50  0001 C CNN
+	1    2600 1650
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	2700 1650 2600 1650
 Wire Wire Line
 	2100 2000 2600 2000
 Wire Wire Line
@@ -319,17 +315,13 @@ Wire Wire Line
 Connection ~ 1300 1500
 Wire Wire Line
 	1300 1500 1600 1500
-Text Label 6200 1350 2    50   ~ 0
-CLKO
-Text Label 4550 2150 2    50   ~ 0
-CLKO
-NoConn ~ 4300 2050
-NoConn ~ 4300 2250
-NoConn ~ 3100 1950
-NoConn ~ 3100 2050
-NoConn ~ 3100 2150
-NoConn ~ 3100 2250
-NoConn ~ 3100 2350
+Text Label 6200 1950 2    50   ~ 0
+CLKOUT
+NoConn ~ 2950 1950
+NoConn ~ 2950 2050
+NoConn ~ 2950 2150
+NoConn ~ 2950 2250
+NoConn ~ 2950 2350
 Wire Wire Line
 	5850 1850 6200 1850
 Text Label 6200 1850 2    50   ~ 0
@@ -346,27 +338,25 @@ Wire Wire Line
 	5850 1550 6200 1550
 Text Label 6200 1550 2    50   ~ 0
 ~SS
-Text Label 4500 1250 2    50   ~ 0
+Text Label 4350 1250 2    50   ~ 0
 MOSI
-Text Label 4500 1350 2    50   ~ 0
+Text Label 4350 1350 2    50   ~ 0
 MISO
-Text Label 4500 1450 2    50   ~ 0
+Text Label 4350 1450 2    50   ~ 0
 ~SS
-Text Label 4500 1550 2    50   ~ 0
+Text Label 4350 1550 2    50   ~ 0
 SCK
 $Comp
 L power:+5V #PWR018
 U 1 1 60BD5C76
-P 5250 900
-F 0 "#PWR018" H 5250 750 50  0001 C CNN
-F 1 "+5V" V 5265 1028 50  0000 L CNN
-F 2 "" H 5250 900 50  0001 C CNN
-F 3 "" H 5250 900 50  0001 C CNN
-	1    5250 900 
+P 4850 950
+F 0 "#PWR018" H 4850 800 50  0001 C CNN
+F 1 "+5V" H 4750 1100 50  0000 L CNN
+F 2 "" H 4850 950 50  0001 C CNN
+F 3 "" H 4850 950 50  0001 C CNN
+	1    4850 950 
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5250 900  5250 950 
 Connection ~ 5250 950 
 Wire Wire Line
 	5250 950  5250 1050
@@ -455,12 +445,6 @@ F 3 "" H 5600 5100 50  0001 C CNN
 	1    5600 5100
 	0    -1   -1   0   
 $EndComp
-Wire Wire Line
-	2850 2450 3100 2450
-Wire Wire Line
-	6250 1350 6250 550 
-Wire Wire Line
-	5850 1350 6250 1350
 Wire Wire Line
 	5850 3050 6400 3050
 Wire Wire Line
@@ -724,67 +708,56 @@ $EndComp
 $Comp
 L Device:C C2
 U 1 1 60DD4A17
-P 3000 3050
-F 0 "C2" H 3115 3096 50  0000 L CNN
-F 1 "100n" H 3115 3005 50  0000 L CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 3038 2900 50  0001 C CNN
-F 3 "~" H 3000 3050 50  0001 C CNN
-	1    3000 3050
+P 3150 3100
+F 0 "C2" H 3265 3146 50  0000 L CNN
+F 1 "100n" H 3265 3055 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 3188 2950 50  0001 C CNN
+F 3 "~" H 3150 3100 50  0001 C CNN
+	1    3150 3100
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR010
 U 1 1 60DD4F15
-P 3000 3200
-F 0 "#PWR010" H 3000 2950 50  0001 C CNN
-F 1 "GND" V 3005 3072 50  0000 R CNN
-F 2 "" H 3000 3200 50  0001 C CNN
-F 3 "" H 3000 3200 50  0001 C CNN
-	1    3000 3200
+P 3150 3250
+F 0 "#PWR010" H 3150 3000 50  0001 C CNN
+F 1 "GND" V 3155 3122 50  0000 R CNN
+F 2 "" H 3150 3250 50  0001 C CNN
+F 3 "" H 3150 3250 50  0001 C CNN
+	1    3150 3250
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR09
 U 1 1 60DD4F1F
-P 3000 2900
-F 0 "#PWR09" H 3000 2750 50  0001 C CNN
-F 1 "+5V" V 3015 3028 50  0000 L CNN
-F 2 "" H 3000 2900 50  0001 C CNN
-F 3 "" H 3000 2900 50  0001 C CNN
-	1    3000 2900
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C3
-U 1 1 60DE40C3
-P 4400 3500
-F 0 "C3" H 4515 3546 50  0000 L CNN
-F 1 "100n" H 4515 3455 50  0000 L CNN
-F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 4438 3350 50  0001 C CNN
-F 3 "~" H 4400 3500 50  0001 C CNN
-	1    4400 3500
+P 3150 2950
+F 0 "#PWR09" H 3150 2800 50  0001 C CNN
+F 1 "+5V" V 3165 3078 50  0000 L CNN
+F 2 "" H 3150 2950 50  0001 C CNN
+F 3 "" H 3150 2950 50  0001 C CNN
+	1    3150 2950
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR017
 U 1 1 60DE45EF
-P 4400 3650
-F 0 "#PWR017" H 4400 3400 50  0001 C CNN
-F 1 "GND" V 4405 3522 50  0000 R CNN
-F 2 "" H 4400 3650 50  0001 C CNN
-F 3 "" H 4400 3650 50  0001 C CNN
-	1    4400 3650
+P 4950 4650
+F 0 "#PWR017" H 4950 4400 50  0001 C CNN
+F 1 "GND" V 4955 4522 50  0000 R CNN
+F 2 "" H 4950 4650 50  0001 C CNN
+F 3 "" H 4950 4650 50  0001 C CNN
+	1    4950 4650
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR016
 U 1 1 60DE45F9
-P 4400 3350
-F 0 "#PWR016" H 4400 3200 50  0001 C CNN
-F 1 "+5V" V 4415 3478 50  0000 L CNN
-F 2 "" H 4400 3350 50  0001 C CNN
-F 3 "" H 4400 3350 50  0001 C CNN
-	1    4400 3350
+P 4950 4350
+F 0 "#PWR016" H 4950 4200 50  0001 C CNN
+F 1 "+5V" V 4965 4478 50  0000 L CNN
+F 2 "" H 4950 4350 50  0001 C CNN
+F 3 "" H 4950 4350 50  0001 C CNN
+	1    4950 4350
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -821,7 +794,6 @@ F 3 "" H 6000 5800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 NoConn ~ 5850 1450
-NoConn ~ 5850 1950
 NoConn ~ 5850 2050
 NoConn ~ 5850 2350
 NoConn ~ 5850 2450
@@ -985,14 +957,12 @@ F 3 "" H 5000 6350 50  0001 C CNN
 	1    5000 6350
 	1    0    0    -1  
 $EndComp
-Text Notes 900  5200 0    50   ~ 0
+Text Notes 950  5600 0    50   ~ 0
 ATmega88A\n\nFuses:\n> CKOUT = 0 ==> system clock output on pin PB0/CLKO\n> CKSEL3...0 = 0010 & CKDIV8 = 1 ==> internal RC oscillator & no prescaler ==> sys clock = 8MHz\n\nProgramming:\nTo be done before mounting the ATmega because SPI connector is not mounted to gain place.
 Wire Wire Line
-	3000 1450 3000 1250
+	2900 1450 2900 1250
 Wire Wire Line
-	3000 1250 3100 1250
-Wire Wire Line
-	2600 1450 3000 1450
+	2600 1450 2900 1450
 Text Label 2650 1350 0    50   ~ 0
 TXCAN
 Text Label 2650 1450 0    50   ~ 0
@@ -1020,21 +990,15 @@ Wire Wire Line
 Wire Wire Line
 	4650 1350 4650 950 
 Wire Wire Line
-	4650 950  5250 950 
+	4650 950  4850 950 
 Wire Wire Line
-	4300 1250 4500 1250
+	4150 1250 4350 1250
 Wire Wire Line
-	4500 1350 4300 1350
+	4350 1350 4150 1350
 Wire Wire Line
-	4300 1450 4500 1450
+	4150 1450 4350 1450
 Wire Wire Line
-	4300 1550 4500 1550
-Wire Wire Line
-	4550 2150 4300 2150
-Wire Wire Line
-	4550 2150 4550 550 
-Wire Wire Line
-	4550 550  6250 550 
+	4150 1550 4350 1550
 $Comp
 L Connector:Conn_01x24_Male J3
 U 1 1 60BF00B8
@@ -1608,18 +1572,16 @@ $EndComp
 $Comp
 L Interface_CAN_LIN_JGUI:MCP2515-IP U2
 U 1 1 60AAF40D
-P 3700 1850
-F 0 "U2" H 4300 2750 50  0000 C CNN
-F 1 "MCP2515-IP" H 4100 2650 50  0000 C CNN
-F 2 "Package_DIP:DIP-18_W7.62mm_LongPads" H 3700 950 50  0001 C CIN
-F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/21801e.pdf" H 3800 1050 50  0001 C CNN
-	1    3700 1850
+P 3550 1850
+F 0 "U2" H 4150 2750 50  0000 C CNN
+F 1 "MCP2515-IP" H 3950 2650 50  0000 C CNN
+F 2 "Package_DIP:DIP-18_W7.62mm_LongPads" H 3550 950 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/21801e.pdf" H 3650 1050 50  0001 C CNN
+	1    3550 1850
 	-1   0    0    -1  
 $EndComp
-Text Label 2850 1850 0    50   ~ 0
+Text Label 2800 1850 0    50   ~ 0
 INT
-Wire Wire Line
-	3100 1850 2850 1850
 Text Label 6200 2250 2    50   ~ 0
 INT
 Wire Wire Line
@@ -1676,4 +1638,129 @@ Wire Wire Line
 Connection ~ 6000 5100
 Wire Wire Line
 	6000 5100 6350 5100
+$Comp
+L Device:Crystal Y1
+U 1 1 60DEC3A6
+P 4350 2750
+F 0 "Y1" H 4350 3018 50  0000 C CNN
+F 1 "16MHz" H 4350 2927 50  0000 C CNN
+F 2 "Crystal:Crystal_HC18-U_Vertical" H 4350 2750 50  0001 C CNN
+F 3 "~" H 4350 2750 50  0001 C CNN
+	1    4350 2750
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C3
+U 1 1 60DE40C3
+P 4950 4500
+F 0 "C3" H 5065 4546 50  0000 L CNN
+F 1 "100n" H 5065 4455 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 4988 4350 50  0001 C CNN
+F 3 "~" H 4950 4500 50  0001 C CNN
+	1    4950 4500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2950 1850 2800 1850
+Wire Wire Line
+	2900 1250 2950 1250
+Wire Wire Line
+	2600 1350 2950 1350
+$Comp
+L Device:C C6
+U 1 1 60EE37A0
+P 4200 2950
+F 0 "C6" H 4315 2996 50  0000 L CNN
+F 1 "22pF" H 4250 2850 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 4238 2800 50  0001 C CNN
+F 3 "~" H 4200 2950 50  0001 C CNN
+	1    4200 2950
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:C C7
+U 1 1 60EE505B
+P 4500 2950
+F 0 "C7" H 4615 2996 50  0000 L CNN
+F 1 "22pF" H 4550 2850 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D4.3mm_W1.9mm_P5.00mm" H 4538 2800 50  0001 C CNN
+F 3 "~" H 4500 2950 50  0001 C CNN
+	1    4500 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR033
+U 1 1 60F07DB1
+P 4350 3300
+F 0 "#PWR033" H 4350 3050 50  0001 C CNN
+F 1 "GND" V 4355 3172 50  0000 R CNN
+F 2 "" H 4350 3300 50  0001 C CNN
+F 3 "" H 4350 3300 50  0001 C CNN
+	1    4350 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 2800 4200 2750
+Wire Wire Line
+	4500 2800 4500 2750
+Wire Wire Line
+	4150 2050 4500 2050
+Wire Wire Line
+	4500 2050 4500 2750
+Connection ~ 4500 2750
+Wire Wire Line
+	4150 2150 4200 2150
+Wire Wire Line
+	4200 2150 4200 2750
+Connection ~ 4200 2750
+Wire Wire Line
+	5850 1950 6300 1950
+Wire Wire Line
+	6300 1950 6300 550 
+Wire Wire Line
+	6300 550  4600 550 
+Wire Wire Line
+	4600 550  4600 2250
+Wire Wire Line
+	4600 2250 4150 2250
+Wire Wire Line
+	4200 3100 4200 3200
+Wire Wire Line
+	4200 3200 4350 3200
+Wire Wire Line
+	4500 3200 4500 3100
+Wire Wire Line
+	4350 3300 4350 3200
+Connection ~ 4350 3200
+Wire Wire Line
+	4350 3200 4500 3200
+Wire Wire Line
+	5850 1350 6250 1350
+Wire Wire Line
+	6250 1350 6250 650 
+Wire Wire Line
+	4450 2150 4200 2150
+Connection ~ 4200 2150
+Text Label 6200 1350 2    50   ~ 0
+CLKO
+$Comp
+L Jumper:SolderJumper_2_Bridged JP2
+U 1 1 610EB9FC
+P 5400 650
+F 0 "JP2" H 5550 700 50  0000 C CNN
+F 1 "SolderJumper_2_Bridged" H 5550 550 50  0000 C CNN
+F 2 "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm" H 5400 650 50  0001 C CNN
+F 3 "~" H 5400 650 50  0001 C CNN
+	1    5400 650 
+	1    0    0    -1  
+$EndComp
+Connection ~ 4850 950 
+Wire Wire Line
+	4850 950  5250 950 
+Wire Wire Line
+	5550 650  6250 650 
+Wire Wire Line
+	5250 650  4450 650 
+Wire Wire Line
+	4450 650  4450 2150
 $EndSCHEMATC
