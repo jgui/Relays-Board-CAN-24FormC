@@ -1,3 +1,7 @@
+
+#_____________________________________________________
+# Kicad
+
 # For PCBs designed using KiCad: http://www.kicad-pcb.org/
 # Format documentation: http://kicad-pcb.org/help/file-formats/
 
@@ -21,6 +25,21 @@ fp-info-cache
 *.dsn
 *.ses
 
+# Back import
+*.cmp
+
 # Exported BOM files
 *.xml
 *.csv
+
+
+#_____________________________________________________
+# Visual Studio
+.vs/
+
+
+#_____________________________________________________
+# Specific files
+
+/CAN_Database/*.ini
+/CAN_Database/*.stcfg

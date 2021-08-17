@@ -1,0 +1,197 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+VAL_TABLE_ RelayState 1 "Closed" 0 "Open" ;
+
+
+BO_ 2046 RelayBoardCAN24Status: 5 Vector__XXX
+ SG_ FrameStandardID : 24|11@1+ (1,0) [0|0] "-" Vector__XXX
+ SG_ RelayState24 : 23|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState23 : 22|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState22 : 21|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState21 : 20|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState20 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState19 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState18 : 17|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState17 : 16|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState16 : 15|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState15 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState14 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState13 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState12 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState11 : 10|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState10 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState09 : 8|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState08 : 7|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState07 : 6|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState06 : 5|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState05 : 4|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState04 : 3|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState03 : 2|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState02 : 1|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState01 : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+
+BO_ 2047 RelayBoardCAN24Command: 3 Vector__XXX
+ SG_ RelayState24 : 23|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState23 : 22|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState22 : 21|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState21 : 20|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState20 : 19|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState19 : 18|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState18 : 17|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState17 : 16|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState16 : 15|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState15 : 14|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState14 : 13|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState13 : 12|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState12 : 11|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState11 : 10|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState10 : 9|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState09 : 8|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState08 : 7|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState07 : 6|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState06 : 5|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState05 : 4|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState04 : 3|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState03 : 2|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState02 : 1|1@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayState01 : 0|1@1+ (1,0) [0|0] "" Vector__XXX
+
+
+
+CM_ BO_ 2046 "Frame sent by relay board to report relays states (open/close) and the ID of the frame used to send commands to the board.
+This frame is sent with a period of 1s and just after a command is received.";
+CM_ SG_ 2046 FrameStandardID "Command frame ID";
+CM_ SG_ 2046 RelayState24 "Relay closed";
+CM_ SG_ 2046 RelayState23 "Relay closed";
+CM_ SG_ 2046 RelayState22 "Relay closed";
+CM_ SG_ 2046 RelayState21 "Relay closed";
+CM_ SG_ 2046 RelayState20 "Relay closed";
+CM_ SG_ 2046 RelayState19 "Relay closed";
+CM_ SG_ 2046 RelayState18 "Relay closed";
+CM_ SG_ 2046 RelayState17 "Relay closed";
+CM_ SG_ 2046 RelayState16 "Relay closed";
+CM_ SG_ 2046 RelayState15 "Relay closed";
+CM_ SG_ 2046 RelayState14 "Relay closed";
+CM_ SG_ 2046 RelayState13 "Relay closed";
+CM_ SG_ 2046 RelayState12 "Relay closed";
+CM_ SG_ 2046 RelayState11 "Relay closed";
+CM_ SG_ 2046 RelayState10 "Relay closed";
+CM_ SG_ 2046 RelayState09 "Relay closed";
+CM_ SG_ 2046 RelayState08 "Relay closed";
+CM_ SG_ 2046 RelayState07 "Relay closed";
+CM_ SG_ 2046 RelayState06 "Relay closed";
+CM_ SG_ 2046 RelayState05 "Relay closed";
+CM_ SG_ 2046 RelayState04 "Relay closed";
+CM_ SG_ 2046 RelayState03 "Relay closed";
+CM_ SG_ 2046 RelayState02 "Relay closed";
+CM_ SG_ 2046 RelayState01 "Relay closed";
+CM_ BO_ 2047 "Frame to send to relay board to open/close relays.";
+CM_ SG_ 2047 RelayState24 "Relay closed";
+CM_ SG_ 2047 RelayState23 "Relay closed";
+CM_ SG_ 2047 RelayState22 "Relay closed";
+CM_ SG_ 2047 RelayState21 "Relay closed";
+CM_ SG_ 2047 RelayState20 "Relay closed";
+CM_ SG_ 2047 RelayState19 "Relay closed";
+CM_ SG_ 2047 RelayState18 "Relay closed";
+CM_ SG_ 2047 RelayState17 "Relay closed";
+CM_ SG_ 2047 RelayState16 "Relay closed";
+CM_ SG_ 2047 RelayState15 "Relay closed";
+CM_ SG_ 2047 RelayState14 "Relay closed";
+CM_ SG_ 2047 RelayState13 "Relay closed";
+CM_ SG_ 2047 RelayState12 "Relay closed";
+CM_ SG_ 2047 RelayState11 "Relay closed";
+CM_ SG_ 2047 RelayState10 "Relay closed";
+CM_ SG_ 2047 RelayState09 "Relay closed";
+CM_ SG_ 2047 RelayState08 "Relay closed";
+CM_ SG_ 2047 RelayState07 "Relay closed";
+CM_ SG_ 2047 RelayState06 "Relay closed";
+CM_ SG_ 2047 RelayState05 "Relay closed";
+CM_ SG_ 2047 RelayState04 "Relay closed";
+CM_ SG_ 2047 RelayState03 "Relay closed";
+CM_ SG_ 2047 RelayState02 "Relay closed";
+CM_ SG_ 2047 RelayState01 "Relay closed";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "BusType" "CAN";
+VAL_ 2046 RelayState24 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState23 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState22 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState21 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState20 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState19 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState18 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState17 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState16 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState15 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState14 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState13 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState12 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState11 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState10 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState09 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState08 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState07 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState06 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState05 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState04 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState03 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState02 1 "Closed" 0 "Open" ;
+VAL_ 2046 RelayState01 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState24 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState23 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState22 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState21 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState20 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState19 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState18 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState17 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState16 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState15 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState14 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState13 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState12 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState11 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState10 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState09 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState08 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState07 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState06 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState05 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState04 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState03 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState02 1 "Closed" 0 "Open" ;
+VAL_ 2047 RelayState01 1 "Closed" 0 "Open" ;
+
