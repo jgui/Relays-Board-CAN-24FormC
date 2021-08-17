@@ -19,7 +19,7 @@ U 1 1 60A92CA5
 P 5250 2550
 F 0 "U3" H 5500 4150 50  0000 R CNN
 F 1 "ATmega88A-PU" H 6000 4050 50  0000 R CNN
-F 2 "Package_DIP:DIP-28_W7.62mm" H 5250 2550 50  0001 C CIN
+F 2 "Package_DIP:DIP-28_W7.62mm_LongPads" H 5250 2550 50  0001 C CIN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/ATmega48A_88A_168A-Data-Sheet-40002007A.pdf" H 5250 2550 50  0001 C CNN
 	1    5250 2550
 	1    0    0    -1  
@@ -30,7 +30,7 @@ U 1 1 60A94360
 P 7350 5000
 F 0 "U4" H 6700 6150 50  0000 C CNN
 F 1 "MCP23017_SP" H 6900 6050 50  0000 C CNN
-F 2 "Package_DIP:DIP-28_W7.62mm" H 7550 4000 50  0001 L CNN
+F 2 "Package_DIP:DIP-28_W7.62mm_LongPads" H 7550 4000 50  0001 L CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf" H 7550 3900 50  0001 L CNN
 	1    7350 5000
 	1    0    0    -1  
@@ -285,7 +285,7 @@ U 1 1 60BB7B61
 P 1450 1000
 F 0 "R1" V 1250 1000 50  0000 C CNN
 F 1 "120R" V 1350 1000 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 1380 1000 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P5.08mm_Vertical" V 1380 1000 50  0001 C CNN
 F 3 "~" H 1450 1000 50  0001 C CNN
 	1    1450 1000
 	-1   0    0    -1  
@@ -296,7 +296,7 @@ U 1 1 60BB6BA8
 P 1300 1000
 F 0 "JP1" V 1400 1300 50  0000 R CNN
 F 1 "Jumper" V 1300 1450 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Horizontal" H 1300 1000 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1300 1000 50  0001 C CNN
 F 3 "~" H 1300 1000 50  0001 C CNN
 	1    1300 1000
 	0    -1   -1   0   
@@ -795,7 +795,6 @@ F 3 "" H 6000 5800 50  0001 C CNN
 $EndComp
 NoConn ~ 5850 1450
 NoConn ~ 5850 2050
-NoConn ~ 5850 2350
 NoConn ~ 5850 2450
 NoConn ~ 5850 2550
 $Comp
@@ -843,12 +842,6 @@ Wire Wire Line
 	6450 3150 6450 1000
 Wire Wire Line
 	6400 3050 6400 700 
-Wire Wire Line
-	6400 700  7250 700 
-Wire Wire Line
-	6450 1000 7250 1000
-Wire Wire Line
-	6500 1300 7250 1300
 Wire Wire Line
 	6550 1600 7250 1600
 Wire Wire Line
@@ -1763,4 +1756,40 @@ Wire Wire Line
 	5250 650  4450 650 
 Wire Wire Line
 	4450 650  4450 2150
+Wire Wire Line
+	6500 1300 7250 1300
+Wire Wire Line
+	6450 1000 7250 1000
+Wire Wire Line
+	6400 700  7250 700 
+Text Label 6200 2350 2    50   ~ 0
+CONF
+Wire Wire Line
+	5850 2350 6200 2350
+$Comp
+L Device:Jumper JP3
+U 1 1 610688EB
+P 1950 3950
+F 0 "JP3" V 2050 4250 50  0000 R CNN
+F 1 "Jumper" V 1950 4400 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 1950 3950 50  0001 C CNN
+F 3 "~" H 1950 3950 50  0001 C CNN
+	1    1950 3950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR034
+U 1 1 61069EA3
+P 1950 4250
+F 0 "#PWR034" H 1950 4000 50  0001 C CNN
+F 1 "GND" V 1955 4122 50  0000 R CNN
+F 2 "" H 1950 4250 50  0001 C CNN
+F 3 "" H 1950 4250 50  0001 C CNN
+	1    1950 4250
+	1    0    0    -1  
+$EndComp
+Text Label 1950 3650 2    50   ~ 0
+CONF
+Text Notes 2150 4000 0    50   ~ 0
+When jumper is present, microcontroller will\nenter configuration mode after power on.
 $EndSCHEMATC
