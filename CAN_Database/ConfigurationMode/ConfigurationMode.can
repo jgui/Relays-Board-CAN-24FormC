@@ -1,0 +1,77 @@
+/*@!Encoding:1252*/
+
+/*
+CAPL data types reminder:
+u08 => byte
+s08 => char
+u16 => word
+s16 => int
+u32 => dword
+s32 => long
+u64 => qword
+s64 => int64
+double => float or double (8 Byte)
+*/
+
+variables
+{
+  message RelayBoardCAN24ConfCommand MSG_Command;
+  
+  byte ErrorVisibilityCommand;
+  byte ErrorVisibilityStatus;
+}
+
+on sysvar NewConfiguration::NormalModeCommandID
+{
+  CheckForError();
+}
+
+on sysvar NewConfiguration::NormalModeStatusID
+{
+  CheckForError();
+}
+
+on sysvar PanelControl::ButtonWriteConf
+{
+  if (@PanelControl::ButtonWriteConf == 1)
+  {
+    if (ErrorVisibilityCommand == 1 || ErrorVisibilityStatus == 1) // No need to check Bitrate for error because enforced by user interface.
+    {
+      putValueToControl("Configuration", "MessagePanel", "Please fix error(s) before writing configuration to board.\n");
+    }
+    else
+    {
+      MSG_Command.RelayBoardCommandID = @NewConfiguration::NormalModeCommandID;
+      MSG_Command.RelayBoardStatusID = @NewConfiguration::NormalModeStatusID;
+      MSG_Command.RelayBoardBitrate = @NewConfiguration::NormalModeBitrate;
+      output(MSG_Command);
+      putValueToControl("Configuration", "MessagePanel", "Configuration written to board, check completion status.\n");
+    }
+  }
+}
+
+void CheckForError(void)
+{
+  ErrorVisibilityCommand = 0; // Reminder: all data (even local) are static in CAPL, so need to set to 0 explicitly
+  ErrorVisibilityStatus = 0;
+  
+  if (@NewConfiguration::NormalModeCommandID > 0x7FF)
+  {
+    putValueToControl("Configuration", "MessagePanel", "Command ID must be <= 0x7FF, please select another ID.\n");
+    ErrorVisibilityCommand = 1;
+  }
+  if (@NewConfiguration::NormalModeStatusID > 0x7FF)
+  {
+    putValueToControl("Configuration", "MessagePanel", "Status ID must be <= 0x7FF, please select another ID.\n");
+    ErrorVisibilityStatus = 1;
+  }
+  if (@NewConfiguration::NormalModeCommandID == @NewConfiguration::NormalModeStatusID)
+  {
+    putValueToControl("Configuration", "MessagePanel", "Command ID and Status ID must be different, please select another ID.\n");
+    ErrorVisibilityCommand = 1;
+    ErrorVisibilityStatus = 1;
+  }
+  
+  SetControlVisibility("Configuration", "TextErrorCommandID", ErrorVisibilityCommand);
+  SetControlVisibility("Configuration", "TextErrorStatusID", ErrorVisibilityStatus);
+}

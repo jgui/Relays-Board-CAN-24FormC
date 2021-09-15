@@ -41,5 +41,9 @@ fp-info-cache
 #_____________________________________________________
 # Specific files
 
-/CAN_Database/*.ini
-/CAN_Database/*.stcfg
+/CAN_Database/ConfigurationMode/*.ini
+/CAN_Database/ConfigurationMode/*.stcfg
+/CAN_Database/ConfigurationMode/*.cbf
+/CAN_Database/NormalMode/*.ini
+/CAN_Database/NormalMode/*.stcfg
+/CAN_Database/NormalMode/*.cbf

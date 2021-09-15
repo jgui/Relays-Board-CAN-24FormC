@@ -1,0 +1,66 @@
+VERSION ""
+
+
+NS_ : 
+	NS_DESC_
+	CM_
+	BA_DEF_
+	BA_
+	VAL_
+	CAT_DEF_
+	CAT_
+	FILTER
+	BA_DEF_DEF_
+	EV_DATA_
+	ENVVAR_DATA_
+	SGTYPE_
+	SGTYPE_VAL_
+	BA_DEF_SGTYPE_
+	BA_SGTYPE_
+	SIG_TYPE_REF_
+	VAL_TABLE_
+	SIG_GROUP_
+	SIG_VALTYPE_
+	SIGTYPE_VALTYPE_
+	BO_TX_BU_
+	BA_DEF_REL_
+	BA_REL_
+	BA_DEF_DEF_REL_
+	BU_SG_REL_
+	BU_EV_REL_
+	BU_BO_REL_
+	SG_MUL_VAL_
+
+BS_:
+
+BU_:
+VAL_TABLE_ LastCommandFeedbackStatus 6 "Error: Bitrate > 7 (1 Mbps)" 5 "Error: Rx ID > 0x7FF" 4 "Error: Tx ID > 0x7FF" 3 "Error: DLC is not 5" 2 "Error: RTR frame received" 1 "Success" 0 "No command received" ;
+VAL_TABLE_ CanBusBitRate 7 "1000 kbps" 6 "500 kbps" 5 "250 kbps" 4 "125 kbps" 3 "100 kbps" 2 "50 kbps" 1 "20 kbps" 0 "10 kbps" ;
+
+
+BO_ 0 RelayBoardCAN24ConfStatus: 6 Vector__XXX
+ SG_ LastCommandStatus : 40|8@1+ (1,0) [0|0] "" Vector__XXX
+ SG_ RelayBoardBitrate : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ RelayBoardCommandID : 16|11@1+ (1,0) [0|0] "-" Vector__XXX
+ SG_ RelayBoardStatusID : 0|11@1+ (1,0) [0|0] "-" Vector__XXX
+
+BO_ 1 RelayBoardCAN24ConfCommand: 5 Vector__XXX
+ SG_ RelayBoardBitrate : 32|3@1+ (1,0) [0|7] "" Vector__XXX
+ SG_ RelayBoardCommandID : 16|11@1+ (1,0) [0|0] "-" Vector__XXX
+ SG_ RelayBoardStatusID : 0|11@1+ (1,0) [0|0] "-" Vector__XXX
+
+
+
+CM_ BO_ 0 "Frame sent by relay board to report current configuration (normal mode command frame ID, normal mode status frame ID, normal mode bitrate) and last configuration command completion status.";
+CM_ SG_ 0 LastCommandStatus "Completion status for the last configuration command sent.";
+CM_ SG_ 0 RelayBoardCommandID "ID of the command message sent to relay board in normal mode.";
+CM_ SG_ 0 RelayBoardStatusID "ID of the status message sent by the relay board in normal mode.";
+CM_ BO_ 1 "Frame to send to relay board to change normal mode configuration (normal mode command frame ID, normal mode status frame ID, normal mode bitrate).";
+CM_ SG_ 1 RelayBoardCommandID "ID of the command message sent to relay board in normal mode.";
+CM_ SG_ 1 RelayBoardStatusID "ID of the status message sent by the relay board in normal mode.";
+BA_DEF_  "BusType" STRING ;
+BA_DEF_DEF_  "BusType" "CAN";
+VAL_ 0 LastCommandStatus 7 "Error: Bitrate > 7 (1 Mbps)" 6 "Error: Tx ID == Rx ID" 5 "Error: Rx ID > 0x7FF" 4 "Error: Tx ID > 0x7FF" 3 "Error: DLC is not 5" 2 "Error: RTR frame received" 1 "Success" 0 "No command received" ;
+VAL_ 0 RelayBoardBitrate 7 "1000 kbps" 6 "500 kbps" 5 "250 kbps" 4 "125 kbps" 3 "100 kbps" 2 "50 kbps" 1 "20 kbps" 0 "10 kbps" ;
+VAL_ 1 RelayBoardBitrate 7 "1000 kbps" 6 "500 kbps" 5 "250 kbps" 4 "125 kbps" 3 "100 kbps" 2 "50 kbps" 1 "20 kbps" 0 "10 kbps" ;
+

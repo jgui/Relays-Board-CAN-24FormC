@@ -8,13 +8,18 @@ Programming info
 
 The microcontroller cannot be programmed on the board (no SPI connector mounted),
 use a breadboard or other. If the programming fail, check following points:
-- an external clock is provided (required when fuse CKOUT is set).
-- MISO pin is also connected to another devise (eg MCP2515 on the breadboard)
+- an external clock is provided (in this project the clock is configured to be external clock).
+- MISO pin is corrupted because connected to both the programmer and another device (eg MCP2515 on the breadboard) 
 
-Fuses to set to 1:
-- HIGH.SPIEN
-- HIGH.EESAVE
-- LOW.CKOUT
+Fuses:
+	- HIGH.SPIEN = 1
+	- HIGH.EESAVE = 1
+	- LOW.CKOUT = 1
+	- LOW.SUT_CKSEL = Ext clock,
+	==> 
+	EXTENDED = 0xF9
+	HIGH = 0xDF
+	LOW = 0x80
 
 ______________________________________
 TODO
@@ -41,9 +46,9 @@ TODO
 //______________________________________________________________________________
 // Relays
 
-u08 relay_state0108; // bit 0..7 = state of relay  1..8
-u08 relay_state0916; // bit 0..7 = state of relay  9..16
-u08 relay_state1724; // bit 0..7 = state of relay 17..24
+uint8_t relay_state0108; // bit 0..7 = state of relay  1..8
+uint8_t relay_state0916; // bit 0..7 = state of relay  9..16
+uint8_t relay_state1724; // bit 0..7 = state of relay 17..24
 void relay_update(void);
 
 //______________________________________________________________________________
@@ -53,36 +58,90 @@ MCP23017 PortExtender;
 
 
 //______________________________________________________________________________
-// CAN bus
+// CAN bus, all modes (normal and configuration)
 
-#define CAN_MSG_ID_RX 0x7FF
-#define CAN_MSG_ID_TX 0x7FE
+can_t MsgTx;
+can_t MsgRx;
+uint8_t can_send_request;
 
-// Set filters and masks so only frame with standard ID CAN_MSG_ID_RX is received
-const uint8_t can_filter[] PROGMEM = 
+
+//______________________________________________________________________________
+// CAN bus, normal mode
+
+#define CAN_NORM_MSG_ID_RX_DFLT 0x7FF // default ID for Rx message in normal mode
+#define CAN_NORM_MSG_ID_TX_DFLT 0x7FE // default ID for Tx message in normal mode
+
+uint16_t can_normmode_msg_id_tx;
+uint16_t can_normmode_msg_id_rx;
+uint8_t  can_normmode_bitrate;
+
+// Set filters and masks so only frame with standard ID CAN_NORM_MSG_ID_RX_DFLT is received
+uint8_t can_normmode_filter[] =
 {
 	// Group 0
-	MCP2515_FILTER(CAN_MSG_ID_RX),				// Filter 0
-	MCP2515_FILTER(CAN_MSG_ID_RX),				// Filter 1
+	MCP2515_FILTER(CAN_NORM_MSG_ID_RX_DFLT),				// Filter 0
+	MCP2515_FILTER(CAN_NORM_MSG_ID_RX_DFLT),				// Filter 1
 	
 	// Group 1
-	MCP2515_FILTER(CAN_MSG_ID_RX),		// Filter 2
-	MCP2515_FILTER(CAN_MSG_ID_RX),		// Filter 3
-	MCP2515_FILTER(CAN_MSG_ID_RX),		// Filter 4
-	MCP2515_FILTER(CAN_MSG_ID_RX),		// Filter 5
+	MCP2515_FILTER(CAN_NORM_MSG_ID_RX_DFLT),		// Filter 2
+	MCP2515_FILTER(CAN_NORM_MSG_ID_RX_DFLT),		// Filter 3
+	MCP2515_FILTER(CAN_NORM_MSG_ID_RX_DFLT),		// Filter 4
+	MCP2515_FILTER(CAN_NORM_MSG_ID_RX_DFLT),		// Filter 5
 	
 	MCP2515_FILTER(0x7FF),		// Mask 0 (for group 0)
 	MCP2515_FILTER(0x7FF),		// Mask 1 (for group 1)
 };
+void can_normmode_filter_update(uint32_t id) {
+	// This function update can_normmode_filter with new filter to accept only
+	// one message with identifier "id" (standard).
+	
+	uint8_t b0 = (uint8_t)((uint32_t) id >> 3);
+	uint8_t b1 = (uint8_t)((uint32_t) id << 5);
+	
+	// Group 0
+	can_normmode_filter[ 0] = b0; can_normmode_filter[ 1] = b1; // Filter 0
+	can_normmode_filter[ 4] = b0; can_normmode_filter[ 5] = b1; // Filter 1
+	// Group 1
+	can_normmode_filter[ 8] = b0; can_normmode_filter[ 9] = b1; // Filter 2
+	can_normmode_filter[12] = b0; can_normmode_filter[13] = b1; // Filter 3
+	can_normmode_filter[16] = b0; can_normmode_filter[17] = b1; // Filter 4
+	can_normmode_filter[20] = b0; can_normmode_filter[21] = b1; // Filter 5	
+}
+uint16_t EEMEM MsgTxId_EEMEM = CAN_NORM_MSG_ID_TX_DFLT;
+uint16_t EEMEM MsgRxId_EEMEM = CAN_NORM_MSG_ID_RX_DFLT;
+uint8_t  EEMEM CanBitRate_EEMEM = BITRATE_500_KBPS;
 
-can_t MsgTx;
-can_t MsgRx;
-u08 can_send_request;
 
 //______________________________________________________________________________
-// Scheduler (sched_1000ms set every 1s)
+// CAN bus, configuration mode
 
-#define SCHED_PERIOD 1.0  // in second. If SCHED_PERIOD is changed, check if OCR1A in shed_init() is lower than MAX, adapt prescaler if needed.
+#define CAN_CONFMODE_MSG_ID_RX 0x001
+#define CAN_CONFMODE_MSG_ID_TX 0x000
+#define CAN_CONFMODE_BITRATE BITRATE_500_KBPS
+
+// Set filters and masks so only frame with standard ID CAN_CONFMODE_MSG_ID_RX is received
+const uint8_t can_confmode_filter[] PROGMEM =
+{
+	// Group 0
+	MCP2515_FILTER(CAN_CONFMODE_MSG_ID_RX),		// Filter 0
+	MCP2515_FILTER(CAN_CONFMODE_MSG_ID_RX),		// Filter 1
+	
+	// Group 1
+	MCP2515_FILTER(CAN_CONFMODE_MSG_ID_RX),		// Filter 2
+	MCP2515_FILTER(CAN_CONFMODE_MSG_ID_RX),		// Filter 3
+	MCP2515_FILTER(CAN_CONFMODE_MSG_ID_RX),		// Filter 4
+	MCP2515_FILTER(CAN_CONFMODE_MSG_ID_RX),		// Filter 5
+	
+	MCP2515_FILTER(0x7FF),		// Mask 0 (for group 0)
+	MCP2515_FILTER(0x7FF),		// Mask 1 (for group 1)
+};
+uint8_t can_confmode_request_status = 0;
+
+
+//______________________________________________________________________________
+// Scheduler (set sched_1000ms every 1s)
+
+#define SCHED_PERIOD 1.0  // in second. If SCHED_PERIOD is changed, check if OCR1A in sched_init() is lower than MAX, adapt prescaler if needed.
 void sched_init(void) {
 	//Initialize timer1 (16bit) to generate 1s event
 	// CTC with OCR1A as TOP, clk = clockio/1024 = 8MHz/1024 = 7812.5Hz
@@ -92,11 +151,17 @@ void sched_init(void) {
 	// Enable interrupt on TOP
 	TIMSK1 = (0<<ICIE1)|(0<<OCIE1B)|(1<<OCIE1A)|(0<<TOIE1);
 }
-volatile u08 sched_1000ms;
+volatile uint8_t sched_1000ms;
 ISR(TIMER1_COMPA_vect)
 {
 	sched_1000ms = 1;
 }
+
+
+//______________________________________________________________________________
+// Configuration mode
+
+#define ModeIsConf() (!(PINC & (1 << PC1)))
 
 
 //______________________________________________________________________________
@@ -153,53 +218,55 @@ int main(void)
 	DDRC  =          (0<<PC6)|(0<<PC5)|(0<<PC4)|(1<<PC3)|(0<<PC2)|(0<<PC1)|(0<<PC0);
 	DDRD  = (1<<PD7)|(1<<PD6)|(1<<PD5)|(1<<PD4)|(1<<PD3)|(1<<PD2)|(1<<PD1)|(1<<PD0);
 	
-	// Set pull-ups or outputs high (1), or no pull-ups or outputs low (0)
+	// Set pull-ups or outputs high (1), or, no pull-ups or outputs low (0)
 	PORTB = (1<<PB7)|(0<<PB6)|(0<<PB5)|(0<<PB4)|(0<<PB3)|(1<<PB2)|(1<<PB1)|(1<<PB0);
 	PORTC =          (0<<PC6)|(0<<PC5)|(0<<PC4)|(0<<PC3)|(1<<PC2)|(1<<PC1)|(0<<PC0);
 	PORTD = (0<<PD7)|(0<<PD6)|(0<<PD5)|(0<<PD4)|(0<<PD3)|(0<<PD2)|(0<<PD1)|(0<<PD0);
 	
 
-#ifdef DEBUG
+	#ifdef DEBUG
 	// To control good operation in debug
 	LedOn();
-	_delay_ms(500);
+	//_delay_ms(500);
 	LedOff();
-	_delay_ms(500);
+	//_delay_ms(500);
 	LedOn();
-#endif
+	#endif
 	
+	if (ModeIsConf())	goto ConfigurationMode;
+	else				goto NormalMode;
+	
+	//____________________________________________________________________________________
+	NormalMode:
 
 	// Initialize MCP23017 port extender
 	mcp23017_init(&PortExtender, 0b000);
 	
+	// Read configuration from EEPROM
+	can_normmode_msg_id_tx = eeprom_read_word(&MsgTxId_EEMEM); // Current ID of Tx message in normal mode
+	can_normmode_msg_id_rx = eeprom_read_word(&MsgRxId_EEMEM); // Current ID of Rx message in normal mode
+	can_normmode_bitrate   = eeprom_read_byte(&CanBitRate_EEMEM); // Bus bit rate in normal mode
+	
 	// Initialize MCP2515 CAN bus controller
-	can_init(BITRATE_500_KBPS);
+	can_init(can_normmode_bitrate);
 	
 	// Load filters and masks
-	can_static_filter(can_filter);
+	can_normmode_filter_update((uint32_t)can_normmode_msg_id_rx);
+	can_static_filter2(can_normmode_filter);
 	// Note: if the program gets stuck at this point, this most probably mean that
 	// MCP2515 do not enter into configuration mode as requested. One possible cause
 	// is a broken or not mounted or not terminated (120Ohm) transceiver.
 	
-	// Initialize Rx message
-	MsgRx.id = CAN_MSG_ID_RX;
-	MsgRx.flags.rtr = 0;
-	MsgRx.flags.extended = 0;
-	MsgRx.length = 3;
-	MsgRx.data[0] = 0x00;
-	MsgRx.data[1] = 0x00;
-	MsgRx.data[2] = 0x00;
-
 	// Initialize Tx message
-	MsgTx.id = CAN_MSG_ID_TX;
+	MsgTx.id = (uint32_t)can_normmode_msg_id_tx;
 	MsgTx.flags.rtr = 0;
 	MsgTx.flags.extended = 0;
 	MsgTx.length = 5;
 	MsgTx.data[0] = 0x00;
 	MsgTx.data[1] = 0x00;
 	MsgTx.data[2] = 0x00;
-	MsgTx.data[3] = CAN_MSG_ID_RX & 0x0FF;
-	MsgTx.data[4] = (CAN_MSG_ID_RX & 0xF00) >> 8;
+	MsgTx.data[3] = (uint8_t)can_normmode_msg_id_rx;
+	MsgTx.data[4] = (uint8_t)(can_normmode_msg_id_rx >> 8);
 
 	// Initialize scheduler
 	sched_init();
@@ -207,10 +274,10 @@ int main(void)
 	// Enable interrupts
 	sei();
 		
-#ifdef DEBUG
+	#ifdef DEBUG
 	// Clear LED if initialization pass
 	LedOff();	
-#endif
+	#endif
 	
 	while(1)
 	{
@@ -230,6 +297,7 @@ int main(void)
 				relay_state0916 = MsgRx.data[1];
 				relay_state1724 = MsgRx.data[2];
 				relay_update();
+				can_send_request = 1;
 			}
 		}
 		
@@ -242,6 +310,105 @@ int main(void)
 			MsgTx.data[2] = relay_state1724;
 			can_send_message(&MsgTx);
 		}	
+	}
+	
+	//____________________________________________________________________________________
+	ConfigurationMode:
+
+	// Initialize MCP2515 CAN bus controller
+	can_init(CAN_CONFMODE_BITRATE);
+	
+	// Load filters and masks
+	can_static_filter(can_confmode_filter);
+	// Note: if the program gets stuck at this point, this most probably mean that
+	// MCP2515 do not enter into configuration mode as requested. One possible cause
+	// is a broken or not mounted or not terminated (120Ohm) transceiver.
+
+	// Initialize Tx message
+	MsgTx.id = CAN_CONFMODE_MSG_ID_TX;
+	MsgTx.flags.rtr = 0;
+	MsgTx.flags.extended = 0;
+	MsgTx.length = 6;
+
+	// Initialize scheduler
+	sched_init();
+	
+	// Enable interrupts
+	sei();
+	
+	#ifdef DEBUG
+	// Clear LED if initialization pass
+	LedOff();
+	#endif
+	
+	while(1)
+	{
+		// Check if it is time to send period message
+		if (sched_1000ms) {
+			sched_1000ms = 0;
+			can_send_request = 1;
+			LedToggle();
+		}
+		
+		// Check if a new message has been received
+		if (can_check_message())
+		{
+			if (can_get_message(&MsgRx))
+			{
+				if (MsgRx.flags.rtr == 1) {
+					can_confmode_request_status = 2;
+				}
+				else if (MsgRx.length != 5) {
+					can_confmode_request_status = 3;
+				}
+				else {
+					// Extract data from message 
+					can_normmode_msg_id_tx = (((uint16_t)MsgRx.data[1]) << 8) | ((uint16_t)MsgRx.data[0]);
+					can_normmode_msg_id_rx = (((uint16_t)MsgRx.data[3]) << 8) | ((uint16_t)MsgRx.data[2]);
+					can_normmode_bitrate = MsgRx.data[4];
+					
+					// Check validity
+					if (can_normmode_msg_id_tx > 0x7FF) {
+						can_confmode_request_status = 4;
+					}
+					else if (can_normmode_msg_id_rx > 0x7FF) {
+						can_confmode_request_status = 5;
+					}
+					else if (can_normmode_msg_id_rx == can_normmode_msg_id_tx) {
+						can_confmode_request_status = 6;
+					}
+					else if (can_normmode_bitrate > BITRATE_1_MBPS) {
+						can_confmode_request_status = 7;
+					}
+					else {
+						eeprom_write_word(&MsgTxId_EEMEM, can_normmode_msg_id_tx);
+						eeprom_write_word(&MsgRxId_EEMEM, can_normmode_msg_id_rx);
+						eeprom_write_byte(&CanBitRate_EEMEM, can_normmode_bitrate);
+						can_confmode_request_status = 1;
+					}
+				}
+				can_send_request = 1;
+			}
+		}
+		
+		// Send status frame
+		if (can_send_request)
+		{
+			can_send_request = 0;
+			
+			can_normmode_msg_id_tx = eeprom_read_word(&MsgTxId_EEMEM); // Current ID of Tx message in normal mode
+			can_normmode_msg_id_rx = eeprom_read_word(&MsgRxId_EEMEM); // Current ID of Rx message in normal mode
+			can_normmode_bitrate   = eeprom_read_byte(&CanBitRate_EEMEM); // Bus bit rate in normal mode
+
+			MsgTx.data[0] = (uint8_t) can_normmode_msg_id_tx;
+			MsgTx.data[1] = (uint8_t)(can_normmode_msg_id_tx >> 8);
+			MsgTx.data[2] = (uint8_t) can_normmode_msg_id_rx;
+			MsgTx.data[3] = (uint8_t)(can_normmode_msg_id_rx >> 8);
+			MsgTx.data[4] = can_normmode_bitrate; // 0 to 7 for 10kbps to 1Mbps, as defined by enum can_bitrate_t in can.h
+			MsgTx.data[5] = can_confmode_request_status;
+
+			can_send_message(&MsgTx);
+		}
 	}
 }
 
@@ -258,7 +425,7 @@ Relay, Port		Relay, Port		Relay, Port
 */
 void relay_update(void)
 {
-	u08 R1, R2;
+	uint8_t R1, R2;
 	
 	// Update port extender (MCP3017)
 	
@@ -273,7 +440,7 @@ void relay_update(void)
 	if (R1 & 0x40) R2 |= (1<<0);
 	if (R1 & 0x80) R2 |= (1<<1);
 	
-	PortExtender.data = (u16)R2;
+	PortExtender.data = (uint16_t)R2;
 	
 	R1 = relay_state0916;
 	R2 = 0;
@@ -286,7 +453,7 @@ void relay_update(void)
 	if (R1 & 0x40) R2 |= (1<<7);
 	if (R1 & 0x80) R2 |= (1<<6);
 	
-	PortExtender.data |= ((u16)R2) << 8;
+	PortExtender.data |= ((uint16_t)R2) << 8;
 
 	mcp23017_write(&PortExtender);
 	
@@ -304,7 +471,4 @@ void relay_update(void)
 	if (R1 & 0x80) R2 |= (1<<6);
 	
 	PORTD = R2;
-	
-	// Request sending of status frame
-	can_send_request = 1;
 }

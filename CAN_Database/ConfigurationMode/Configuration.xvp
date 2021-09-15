@@ -1,0 +1,211 @@
+<?xml version="1.0"?>
+<Panel Type="Vector.CANalyzer.Panels.PanelSerializer, Vector.CANalyzer.Panels.Serializer, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null">
+  <Object Type="Vector.CANalyzer.Panels.Runtime.Panel, Vector.CANalyzer.Panels.Common, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="Panel" Children="Controls" ControlName="Configuration">
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl10" Children="Controls" ControlName="TextErrorStatusID">
+      <Property Name="Name">StaticTextControl10</Property>
+      <Property Name="Size">42, 17</Property>
+      <Property Name="Location">390, 66</Property>
+      <Property Name="TextAlign">MiddleLeft</Property>
+      <Property Name="Text">Error</Property>
+      <Property Name="ForeColor">Red</Property>
+      <Property Name="IsVisibleByLoad">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl9" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl9</Property>
+      <Property Name="Size">58, 13</Property>
+      <Property Name="Location">33, 189</Property>
+      <Property Name="TextAlign">MiddleLeft</Property>
+      <Property Name="Text">Messages:</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.CAPLOutputViewControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="CAPLOutputViewControl1" Children="Controls" ControlName="MessagePanel">
+      <Property Name="Name">CAPLOutputViewControl1</Property>
+      <Property Name="Size">611, 93</Property>
+      <Property Name="Location">33, 208</Property>
+      <Property Name="BoxBackgroundColor">White</Property>
+      <Property Name="TabIndex">21</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl8" Children="Controls" ControlName="TextErrorCommandID">
+      <Property Name="Name">StaticTextControl8</Property>
+      <Property Name="Size">42, 16</Property>
+      <Property Name="Location">390, 41</Property>
+      <Property Name="TextAlign">MiddleLeft</Property>
+      <Property Name="Text">Error</Property>
+      <Property Name="ForeColor">Red</Property>
+      <Property Name="IsVisibleByLoad">False</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl7" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl7</Property>
+      <Property Name="Size">30, 13</Property>
+      <Property Name="Location">495, 68</Property>
+      <Property Name="TextAlign">MiddleRight</Property>
+      <Property Name="Text">[hex]</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl6" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl6</Property>
+      <Property Name="Size">30, 13</Property>
+      <Property Name="Location">495, 42</Property>
+      <Property Name="TextAlign">MiddleRight</Property>
+      <Property Name="Text">[hex]</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl3" Children="Controls" ControlName="Combo Box">
+      <Property Name="Name">ComboBoxControl3</Property>
+      <Property Name="Size">149, 38</Property>
+      <Property Name="Location">495, 139</Property>
+      <Property Name="DropDownWidth">108</Property>
+      <Property Name="BackColor">Window</Property>
+      <Property Name="ForeColor">WindowText</Property>
+      <Property Name="TextBackColor">White</Property>
+      <Property Name="DisplayLabel">Top</Property>
+      <Property Name="DescriptionText">Write completion status:</Property>
+      <Property Name="DescriptionSize">149, 17</Property>
+      <Property Name="SymbolConfiguration">5;2;RelaysCAN24_ConfMode;;RelayBoardCAN24ConfStatus;LastCommandStatus;1;CAN1;;-1;;;</Property>
+      <Property Name="TabIndex">12</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ButtonControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="ButtonControl1" Children="Controls" ControlName="ButtonWriteConf">
+      <Property Name="Name">ButtonControl1</Property>
+      <Property Name="Size">108, 47</Property>
+      <Property Name="Location">381, 130</Property>
+      <Property Name="Text">Write New configuration to board</Property>
+      <Property Name="SymbolConfiguration">5;16;PanelControl;;;ButtonWriteConf;1;;;-1;;;</Property>
+      <Property Name="TabIndex">11</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl5" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl5</Property>
+      <Property Name="Size">122, 21</Property>
+      <Property Name="Location">123, 91</Property>
+      <Property Name="TextAlign">MiddleRight</Property>
+      <Property Name="Text">Normal mode Bitrate:</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl2" Children="Controls" ControlName="Combo Box">
+      <Property Name="Name">ComboBoxControl2</Property>
+      <Property Name="Size">108, 21</Property>
+      <Property Name="Location">381, 91</Property>
+      <Property Name="DropDownWidth">108</Property>
+      <Property Name="BackColor">Window</Property>
+      <Property Name="ForeColor">WindowText</Property>
+      <Property Name="TextBackColor">White</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">NormalModeBitrate:</Property>
+      <Property Name="DescriptionSize">0, 0</Property>
+      <Property Name="SymbolConfiguration">5;16;NewConfiguration;;;NormalModeBitrate;1;;;-1;;;</Property>
+      <Property Name="TabIndex">9</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.ComboBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="ComboBoxControl1" Children="Controls" ControlName="Combo Box">
+      <Property Name="Name">ComboBoxControl1</Property>
+      <Property Name="Size">108, 21</Property>
+      <Property Name="Location">251, 91</Property>
+      <Property Name="DropDownWidth">108</Property>
+      <Property Name="BackColor">Window</Property>
+      <Property Name="ForeColor">WindowText</Property>
+      <Property Name="TextBackColor">White</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">RelayBoardBitrate:</Property>
+      <Property Name="DescriptionSize">0, 0</Property>
+      <Property Name="SymbolConfiguration">5;2;RelaysCAN24_ConfMode;;RelayBoardCAN24ConfStatus;RelayBoardBitrate;1;CAN1;;-1;;;</Property>
+      <Property Name="TabIndex">8</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl4" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl4</Property>
+      <Property Name="Size">108, 20</Property>
+      <Property Name="Location">381, 65</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="BoxTextAlign">Right</Property>
+      <Property Name="ValueDisplay">Hexadecimal</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">NormalModeStatusID:</Property>
+      <Property Name="DescriptionSize">0, 0</Property>
+      <Property Name="SymbolConfiguration">5;16;NewConfiguration;;;NormalModeStatusID;1;;;-1;;;</Property>
+      <Property Name="TabIndex">7</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl3" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl3</Property>
+      <Property Name="Size">108, 20</Property>
+      <Property Name="Location">381, 39</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="BoxTextAlign">Right</Property>
+      <Property Name="ValueDisplay">Hexadecimal</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">NormalModeCommandID:</Property>
+      <Property Name="DescriptionSize">0, 0</Property>
+      <Property Name="SymbolConfiguration">5;16;NewConfiguration;;;NormalModeCommandID;1;;;-1;;;</Property>
+      <Property Name="TabIndex">6</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl4" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl4</Property>
+      <Property Name="Size">108, 20</Property>
+      <Property Name="Location">381, 13</Property>
+      <Property Name="TextAlign">MiddleCenter</Property>
+      <Property Name="Text">New configuration</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl3" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl3</Property>
+      <Property Name="Size">108, 20</Property>
+      <Property Name="Location">251, 13</Property>
+      <Property Name="TextAlign">MiddleCenter</Property>
+      <Property Name="Text">Current configuration</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl2" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl2</Property>
+      <Property Name="Size">212, 20</Property>
+      <Property Name="Location">33, 65</Property>
+      <Property Name="TextAlign">MiddleRight</Property>
+      <Property Name="Text">Normal mode Status frame ID (standard ID):</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl2" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl2</Property>
+      <Property Name="Size">108, 20</Property>
+      <Property Name="Location">251, 65</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="BoxTextAlign">Right</Property>
+      <Property Name="ValueDisplay">Hexadecimal</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">RelayBoardStatusID:</Property>
+      <Property Name="DescriptionSize">0, 0</Property>
+      <Property Name="SymbolConfiguration">5;2;RelaysCAN24_ConfMode;;RelayBoardCAN24ConfStatus;RelayBoardStatusID;1;CAN1;;-1;;;</Property>
+      <Property Name="TabIndex">2</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.StaticTextControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="StaticTextControl1" Children="Controls" ControlName="Static Text">
+      <Property Name="Name">StaticTextControl1</Property>
+      <Property Name="Size">229, 20</Property>
+      <Property Name="Location">16, 39</Property>
+      <Property Name="TextAlign">MiddleRight</Property>
+      <Property Name="Text">Normal mode Command frame ID (standard ID):</Property>
+    </Object>
+    <Object Type="Vector.CANalyzer.Panels.Design.TextBoxControl, Vector.CANalyzer.Panels.CommonControls, Version=10.0.114.0, Culture=neutral, PublicKeyToken=null" Name="TextBoxControl1" Children="Controls" ControlName="Input/Output Box">
+      <Property Name="Name">TextBoxControl1</Property>
+      <Property Name="Size">108, 20</Property>
+      <Property Name="Location">251, 39</Property>
+      <Property Name="AlarmUpperTextColor">WindowText</Property>
+      <Property Name="ValueDecimalPlaces">0</Property>
+      <Property Name="AlarmLowerBkgColor">Salmon</Property>
+      <Property Name="BoxTextAlign">Right</Property>
+      <Property Name="ValueDisplay">Hexadecimal</Property>
+      <Property Name="AlarmUpperBkgColor">IndianRed</Property>
+      <Property Name="AlarmLowerTextColor">WindowText</Property>
+      <Property Name="AlarmGeneralSettings">1;0;0;0</Property>
+      <Property Name="DisplayLabel">Hide</Property>
+      <Property Name="DescriptionText">RelayBoardCommandID:</Property>
+      <Property Name="DescriptionSize">0, 0</Property>
+      <Property Name="SymbolConfiguration">5;2;RelaysCAN24_ConfMode;;RelayBoardCAN24ConfStatus;RelayBoardCommandID;1;CAN1;;-1;;;</Property>
+      <Property Name="TabIndex">0</Property>
+    </Object>
+    <Property Name="Name">Panel</Property>
+    <Property Name="Size">665, 318</Property>
+    <Property Name="BackColor">White</Property>
+  </Object>
+</Panel>
